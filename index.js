@@ -1,7 +1,8 @@
 const express = require('express')
 const path = require('path')
 const usps = require('./usps.js')
-const PORT = process.env.PORT || 5000
+const lob = require('lob')(process.env.LOB_API_KEY);
+const PORT = process.env.PORT || 5000;
 
 express()
 
@@ -22,6 +23,25 @@ express()
       weight: weight,
       price: price
     })
+  })
+  .get('/address', (req, res) => {
+    lob.usVerifications.verify(req.query, function(err, data) {
+      if (err) {
+        res.json({ error: err._response.body.error.message });
+        res.end()
+        return;
+      }
+
+      res.writeHead(200, {'Content-Type':'application/json'});
+      res.end(JSON.stringify({
+        address: [
+          data.primary_line,
+          data.secondary_line,
+          data.last_line
+        ],
+        valid: (data.deliverability === "deliverable")
+      }));
+    });
   })
 
   // start server

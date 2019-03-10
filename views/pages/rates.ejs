@@ -14,9 +14,33 @@
   <p><b>Weight:</b> <%= weight %>oz</p>
   <p><b>Price:</b> <%= price %></p>
 
+  <hr /><br />
+
+  <form id="address">
+    <label for="primary_line">Street Address</label>
+    <input type="text" id="primary_line" name="primary_line" />
+    <input type="text" id="secondary_line" name="secondary_line" placeholder="Optional" />
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" />
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" />
+    <label for="zipcode">Zipcode</label>
+    <input type="text" id="zip_code" name="zip_code" />
+
+    <input class="left" type="submit" value="Verify Address" />
+  </form>
+
+  <br /><br />
+
+  <p id="verified_address"></p>
+
+  <hr />
+
   <a href="/">
     <p>Back to calculator</p>
   </a>
+
+  <script type="text/javascript" src="address.js"></script>
 </div>
 
 </body>

@@ -65,7 +65,15 @@ input[type="submit"]:hover {
   color: #2361c4;
 }
 
+input[type="submit"].left {
+  float: left;
+}
+
 a {
   text-decoration: none;
   color: #44d1ea;
+}
+
+p#verified_address {
+  color: green;
 }
